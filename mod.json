@@ -1,0 +1,29 @@
+{
+	"geode": "4.4.0",
+	"gd": {
+		"win": "2.2074",
+		"android": "2.2074",
+		"mac": "2.2074",
+		"ios": "2.2074"
+	},
+	"id": "lyfame.daily_stars",
+	"name": "Daily Stars",
+	"version": "v1.0.0",
+	"developer": "Lyfame",
+	"description": "Lets you see your daily stars count !",
+	"resources": {
+		"sprites": [
+			"resources/Daily_Stars.png"
+		]
+	},
+	"dependencies": {
+		"capeling.garage-stats-menu": {
+			"version": ">=v1.0.1",
+			"importance": "required"
+		},
+		"geode.node-ids": {
+			"version": ">=v1.20.0",
+			"importance": "required"
+		}
+	}
+}

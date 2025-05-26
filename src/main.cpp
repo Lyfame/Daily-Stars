@@ -2,32 +2,16 @@
 #include <capeling.garage-stats-menu/include/StatsDisplayAPI.h>
 #include <Geode/modify/GJGarageLayer.hpp>
 #include <Geode/modify/EndLevelLayer.hpp>
-#include <Geode/modify/PlayLayer.hpp>
-#include <Geode/ui/LazySprite.hpp>
-#include <windows.h>
-#include <chrono>
-#include <iomanip>
-#include <sstream>
 
 using namespace geode::prelude;
 
-
 int dailyStars = Mod::get()->getSavedValue<int>("dailyStars");
-
-
-struct MyCustomSaveData {
-    int dailyStars;
-};
-
-template<>
-struct matjson::Serialize<MyCustomSaveData>;
 
 std::string getCurrentDate() {
     auto now = std::chrono::system_clock::now();
     std::time_t now_c = std::chrono::system_clock::to_time_t(now);
     std::tm local_tm;
     localtime_s(&local_tm, &now_c);
-    
     std::ostringstream oss;
     oss << std::put_time(&local_tm, "%-%mY-%d");
     return oss.str();
@@ -70,19 +54,6 @@ class $modify(EndLevelLayer) {
 		dailyStars += m_stars;  
 		Mod::get()->setSavedValue<int>("dailyStars", dailyStars);
 	}		
-};
-
-class $mod_main {
-    void onLoad() {
-        dailyStars = Mod::get()->getSavedValue<int>("dailyStars");
-		checkAndResetDailyStars();
-        log::info("Loaded dailyStars: {}", dailyStars);
-    }
-
-    void onUnload() {
-        Mod::get()->setSavedValue<int>("dailyStars", dailyStars);
-        log::info("Saved dailyStars on unload: {}", dailyStars);
-    }
 };
 
 

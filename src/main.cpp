@@ -32,13 +32,14 @@ class $modify(GJGarageLayer) {
 	bool init() {
 		if (!GJGarageLayer::init())
 			return false;
+			
+		checkAndResetDailyStars();
 
 		auto statMenu = this->getChildByID("capeling.garage-stats-menu/stats-menu");
 
 		auto myStatItem = StatsDisplayAPI::getNewItem("daily-stars"_spr, CCSprite::create("Daily_Stars.png"_spr), dailyStars, 0.8f);
 
 		if (statMenu) {
-			checkAndResetDailyStars();
 			statMenu->addChild(myStatItem);
 			statMenu->updateLayout();
 		}

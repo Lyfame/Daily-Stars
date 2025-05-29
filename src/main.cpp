@@ -8,13 +8,14 @@ using namespace geode::prelude;
 int dailyStars = Mod::get()->getSavedValue<int>("dailyStars");
 
 std::string getCurrentDate() {
-    auto now = std::chrono::system_clock::now();
-    std::time_t now_c = std::chrono::system_clock::to_time_t(now);
-    std::tm local_tm;
-    localtime_s(&local_tm, &now_c);
-    std::ostringstream oss;
-    oss << std::put_time(&local_tm, "%-%mY-%d");
-    return oss.str();
+	auto currentTime = time(0);
+	#pragma clang diagnostic push
+	#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+	auto currentTimeinfo = std::localtime(&currentTime);
+	#pragma clang diagnostic pop
+	std::ostringstream oss;
+	oss << std::put_time(currentTimeinfo, "%d-%m-%Y");
+	return oss.str();
 }
 
 void checkAndResetDailyStars() {

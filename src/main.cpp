@@ -82,12 +82,14 @@ class $modify(LevelBrowserLayer) {
 				}
 			}
 			auto myStatItem = StatsDisplayAPI::getNewItem("daily-stars"_spr, CCSprite::create("Daily_Stars.png"_spr), dailyStars, 0.9f);
-			myStatItem->setPosition({ -13, 97 });
-			myStatItem->setID("daily-stars");
 
+			myStatItem->setPosition({ -13, 97 });
+
+			myStatItem->setID("daily-stars");
+			if (menu->getChildByID("folder-button")) {
+				myStatItem->setPosition({ 21, 62 });
+			}
 			menu->addChild(myStatItem);
 		}
-
-	
 	}
 };

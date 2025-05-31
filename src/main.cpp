@@ -2,6 +2,7 @@
 #include <capeling.garage-stats-menu/include/StatsDisplayAPI.h>
 #include <Geode/modify/GJGarageLayer.hpp>
 #include <Geode/modify/EndLevelLayer.hpp>
+#include <Geode/modify/LevelBrowserLayer.hpp>
 
 using namespace geode::prelude;
 
@@ -33,19 +34,25 @@ class $modify(GJGarageLayer) {
 	bool init() {
 		if (!GJGarageLayer::init())
 			return false;
-			
-		checkAndResetDailyStars();
+		
+		if (auto myBool = Mod::get()->getSettingValue<bool>("show-in-garage")) {
+			checkAndResetDailyStars();
 
-		auto statMenu = this->getChildByID("capeling.garage-stats-menu/stats-menu");
+			auto statMenu = this->getChildByID("capeling.garage-stats-menu/stats-menu");
 
-		auto myStatItem = StatsDisplayAPI::getNewItem("daily-stars"_spr, CCSprite::create("Daily_Stars.png"_spr), dailyStars, 0.8f);
+			auto myStatItem = StatsDisplayAPI::getNewItem("daily-stars"_spr, CCSprite::create("Daily_Stars.png"_spr), dailyStars, 0.8f);
 
-		if (statMenu) {
-			statMenu->addChild(myStatItem);
-			statMenu->updateLayout();
+			if (statMenu) {
+				statMenu->addChild(myStatItem);
+				statMenu->updateLayout();
+			}
+
+			return true;
+		}
+		else {
+			return true;
 		}
 
-		return true;
 	}
 };
 
@@ -58,5 +65,29 @@ class $modify(EndLevelLayer) {
 	}		
 };
 
+class $modify(LevelBrowserLayer) {
+	$override
+	void onEnter() {
+		LevelBrowserLayer::onEnter();
 
+		if (auto myBool = Mod::get()->getSettingValue<bool>("show-in-browser")) {
+			checkAndResetDailyStars();
 
+			auto menu = this->getChildByID("page-menu");
+			auto oldStat = menu->getChildByID("daily-stars");
+	
+			if (auto menu = this->getChildByID("page-menu")) {
+				if (auto oldStat = menu->getChildByID("daily-stars")) {
+					oldStat->removeFromParent();
+				}
+			}
+			auto myStatItem = StatsDisplayAPI::getNewItem("daily-stars"_spr, CCSprite::create("Daily_Stars.png"_spr), dailyStars, 0.9f);
+			myStatItem->setPosition({ -13, 97 });
+			myStatItem->setID("daily-stars");
+
+			menu->addChild(myStatItem);
+		}
+
+	
+	}
+};

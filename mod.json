@@ -8,13 +8,28 @@
 	},
 	"id": "lyfame.daily_stars",
 	"name": "Daily Stars",
-	"version": "v1.0.4",
+	"version": "v1.0.5",
 	"developer": "Lyfame",
 	"description": "Lets you see your daily stars count !",
+	"links": { "source": "https://github.com/Lyfame/Daily-Stars" },
 	"resources": {
 		"sprites": [
 			"resources/Daily_Stars.png"
 		]
+	},
+	"settings": {
+		"show-in-browser": {
+    		"type": "bool",
+    		"name": "Show Stat In The Level Search",
+    		"description": "Toggles on and off the Daily Stars stat in the level search",
+   			"default": true
+		},
+		"show-in-garage": {
+    		"type": "bool",
+    		"name": "Show Stat In The Garage",
+    		"description": "Toggles on and off the Daily Stars stat in the Garage (Where you can change your icons)",
+			"default": true
+		}
 	},
 	"dependencies": {
 		"capeling.garage-stats-menu": {

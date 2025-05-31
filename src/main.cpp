@@ -86,7 +86,7 @@ class $modify(LevelBrowserLayer) {
 			myStatItem->setPosition({ -13, 97 });
 
 			myStatItem->setID("daily-stars");
-			if (menu->getChildByID("folder-button")) {
+			if (menu->getChildByID("folder-button") && Loader::get()->isModLoaded("cvolton.betterinfo")) {
 				myStatItem->setPosition({ 21, 62 });
 			}
 			menu->addChild(myStatItem);

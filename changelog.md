@@ -1,6 +1,6 @@
 # v1.0.5
 - Added changelog
-- Added the stat in the level search
+- Added the stat in the level search page
 - Added settings to toggle the visibility of the stat in the 2 places
 - Added a link to the github page
 - Changed the description to fit the new features

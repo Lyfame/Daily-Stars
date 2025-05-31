@@ -20,8 +20,8 @@
 	"settings": {
 		"show-in-browser": {
     		"type": "bool",
-    		"name": "Show Stat In The Level Search",
-    		"description": "Toggles on and off the Daily Stars stat in the level search",
+    		"name": "Show Stat In The Level Search Page",
+    		"description": "Toggles on and off the Daily Stars stat in the level search page",
    			"default": true
 		},
 		"show-in-garage": {

@@ -29,6 +29,12 @@
     		"name": "Show Stat In The Garage",
     		"description": "Toggles on and off the Daily Stars stat in the Garage (Where you can change your icons)",
 			"default": true
+		},
+		"enable-particles": {
+    		"type": "bool",
+    		"name": "Enable the particles",
+    		"description": "Enables the particles that are behind the daily stars",
+			"default": true
 		}
 	},
 	"dependencies": {

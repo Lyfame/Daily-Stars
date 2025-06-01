@@ -35,7 +35,7 @@ class $modify(GJGarageLayer) {
 		if (!GJGarageLayer::init())
 			return false;
 		
-		if (auto myBool = Mod::get()->getSettingValue<bool>("show-in-garage")) {
+		if (Mod::get()->getSettingValue<bool>("show-in-garage")) {
 			checkAndResetDailyStars();
 
 			auto statMenu = this->getChildByID("capeling.garage-stats-menu/stats-menu");
@@ -70,16 +70,14 @@ class $modify(LevelBrowserLayer) {
 	void onEnter() {
 		LevelBrowserLayer::onEnter();
 
-		if (auto myBool = Mod::get()->getSettingValue<bool>("show-in-browser")) {
+		if (Mod::get()->getSettingValue<bool>("show-in-browser")) {
 			checkAndResetDailyStars();
 
 			auto menu = this->getChildByID("page-menu");
 			auto oldStat = menu->getChildByID("daily-stars");
 	
-			if (auto menu = this->getChildByID("page-menu")) {
-				if (auto oldStat = menu->getChildByID("daily-stars")) {
-					oldStat->removeFromParent();
-				}
+			if (auto oldStat = menu->getChildByID("daily-stars")) {
+				oldStat->removeFromParent();
 			}
 			auto myStatItem = StatsDisplayAPI::getNewItem("daily-stars"_spr, CCSprite::create("Daily_Stars.png"_spr), dailyStars, 0.9f);
 
@@ -90,6 +88,14 @@ class $modify(LevelBrowserLayer) {
 				myStatItem->setPosition({ 21, 62 });
 			}
 			menu->addChild(myStatItem);
+			
+			if (Mod::get()->getSettingValue<bool>("enable-particles")) {
+				CCParticleSystemQuad* starParticles = GameToolbox::particleFromString("30a-1a2a0a8a180a180a0a0a25a50a0a5a-8a0a0a10a5a0a0a0a1a0a1a0a0.25a0a1a0.05a0a0a0a0a1a0a1a0a1a0a0a0a0a0a0.35a0a0a0a20a0a0a0a1a2a1a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0", NULL, false);
+				starParticles->setZOrder(-1);
+				starParticles->setPosition({ 0, 0 });
+				myStatItem->addChild(starParticles);
+			}
+
 		}
 	}
 };

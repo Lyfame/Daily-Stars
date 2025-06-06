@@ -8,7 +8,7 @@
 	},
 	"id": "lyfame.daily_stars",
 	"name": "Daily Stars",
-	"version": "v1.0.5",
+	"version": "v1.0.6",
 	"developer": "Lyfame",
 	"description": "Lets you see your daily stars count !",
 	"links": { "source": "https://github.com/Lyfame/Daily-Stars" },

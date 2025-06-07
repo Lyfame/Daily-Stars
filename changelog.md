@@ -1,7 +1,7 @@
 # v1.0.5
 - Added changelog
 - Added the stat in the level search page
-- Added particules behind the daily star icon
+- Added particles behind the daily star icon
 - Added settings to toggle the visibility of the stat in the 2 places and particules
 - Added a link to the github page
 - Changed the description to fit the new features
